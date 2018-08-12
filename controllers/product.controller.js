@@ -69,3 +69,22 @@ exports.breadcrumb_By_category = function (req,res,next) {
         
     });
 }
+
+exports.categoryList_With_Count = function(req,res,next){
+    var dbquery = [
+        {
+            $group:{_id:"$category",count:{"$sum":1}}
+        },
+        {
+            $project:{
+                _id:0,
+                "categoryname":"$_id",
+                "count":"$count"
+            }
+        }
+    ];
+    var cb = function(err,db_result){
+        responseformator(res,db_result);
+    }
+    product.aggregate(dbquery,cb);  
+}

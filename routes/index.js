@@ -35,4 +35,9 @@ router.get('/getbreadcrumb',function(req,res,next){
 	productcontroller.breadcrumb_By_category(req,res,next);
 });
 
+//new
+router.get('/getproductcategory',function(req,res,next){
+	productcontroller.categoryList_With_Count(req,res,next);
+});
+
 module.exports = router;
